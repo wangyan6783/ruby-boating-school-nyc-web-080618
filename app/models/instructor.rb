@@ -13,38 +13,25 @@ class Instructor
   end
 
   def self.pass_student(student_name, test_name)
-    tests = BoatingTest.all.select do |test|
-      test.name == test_name
-    end
-
-    student = Student.find_student(student_name)
-
-    tests.each do |test|
-      if test.student == student
+    BoatingTest.all.map do |test|
+      if test.student.first_name == student_name && test.name == test_name
         test.status = "pass"
       end
     end
   end
 
   def self.fail_student(student_name, test_name)
-    tests = BoatingTest.all.select do |test|
-      test.name == test_name
-    end
-
-    student = Student.find_student(student_name)
-
-    tests.each do |test|
-      if test.student == student
+    BoatingTest.all.map do |test|
+      if test.student.first_name == student_name && test.name == test_name
         test.status = "fail"
       end
     end
   end
 
   def self.student_grade_percentage(student_name)
-    student = Student.find_student(student_name)
 
     tests = BoatingTest.all.select do |test|
-      test.student == student
+      test.student.first_name == student_name
     end
 
     pass_count = 0

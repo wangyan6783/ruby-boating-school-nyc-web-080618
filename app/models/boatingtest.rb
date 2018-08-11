@@ -4,7 +4,7 @@ class BoatingTest
   @@all = []
 
   def initialize(student, name, status, instructor)
-    @student, = student
+    @student = student
     @name = name
     @status = status
     @instructor = instructor
